@@ -1,20 +1,86 @@
-import { Link } from "react-router-dom";
-import "./LandingPage.css";
 
-export default function LandingPage() {
+import React, { useEffect } from "react";
+import "./LandingPage.css";
+import { Link } from "react-router-dom";
+
+function LandingPage() {
+
+  useEffect(() => {
+    document.body.classList.add("fullwidth");
+
+    const root = document.getElementById("root");
+    const prev = root
+      ? {
+          maxWidth: root.style.maxWidth,
+          padding: root.style.padding,
+          margin: root.style.margin,
+        }
+      : null;
+
+    if (root) {
+      root.style.maxWidth = "100%";
+      root.style.padding = "0";
+      root.style.margin = "0";
+    }
+
+    return () => {
+      document.body.classList.remove("fullwidth");
+      if (root && prev) {
+        root.style.maxWidth = prev.maxWidth || "";
+        root.style.padding = prev.padding || "";
+        root.style.margin = prev.margin || "";
+      }
+    };
+  }, []);
+
   return (
     <div className="landing-container">
-      <h1 className="title">Welcome to Smart Mess Billing</h1>
+      <header className="header">
+        <h1>🍽️ Smart Mess Billing System</h1>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
 
-      <div className="button-group">
-        <Link to="/student-login">
-          <button className="main-btn">User (Student)</button>
-        </Link>
+      <section className="hero">
+        <div className="overlay">
+          <div className="hero-content">
+            <h2>Welcome to the Future of Campus Dining</h2>
+            <p>
+              Track, manage, and enjoy your meals effortlessly with our smart
+              billing system designed for students.
+            </p>
 
-        <Link to="/admin-login">
-          <button className="main-btn">Admin (Staff)</button>
-        </Link>
-      </div>
+            {/* ⭐ Uses Link so routing works exactly like old code */}
+            <div
+              style={{
+                display: "flex",
+                gap: "1rem",
+                marginTop: "1.5rem",
+                justifyContent: "center",
+              }}
+            >
+              <Link to="/student-login">
+                <button className="btn-primary">User Login</button>
+              </Link>
+
+              <Link to="/admin-login">
+                <button className="btn-outline">Admin Login</button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <p>
+          © 2025 Smart Mess Billing System | Designed by Harshitha and Deepthi 💙
+        </p>
+      </footer>
     </div>
   );
 }
+
+export default LandingPage;
