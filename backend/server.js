@@ -9,7 +9,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "Harshitha@123", // 👈 your MySQL password here
+  password: "Harshitha@123",
   database: "MessManagement"
 });
 
@@ -21,44 +21,47 @@ db.connect((err) => {
   console.log("✅ MySQL connected successfully!");
 });
 
+// ⬇️ ⬇️ ADD THIS STUDENT LOGIN API HERE ⬇️
+
+app.post("/api/student-login", (req, res) => {
+  const { studentId, password } = req.body;
+
+const query = "SELECT * FROM student WHERE roll_no = ? AND password = ?";
+
+
+  db.query(query, [studentId, password], (err, results) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+
+    if (results.length > 0) {
+      res.json({ success: true, message: "Login successful" });
+    } else {
+      res.json({ success: false, message: "Invalid credentials" });
+    }
+  });
+  // ⬇️ ADMIN LOGIN API ⬇️
+app.post("/api/admin-login", (req, res) => {
+  const { username, password } = req.body;
+
+  const query = "SELECT * FROM admin WHERE username = ? AND password = ?";
+  db.query(query, [username, password], (err, results) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+
+    if (results.length > 0) {
+      res.json({ success: true, message: "Admin login successful" });
+    } else {
+      res.json({ success: false, message: "Invalid admin credentials" });
+    }
+  });
+});
+
+});
+
+// ⬆️ ⬆️ END OF LOGIN API CODE ⬆️
+
+// Default home route
 app.get("/", (req, res) => {
   res.send("Smart Mess Billing Backend is running 🚀");
 });
 
+// Start server
 app.listen(5000, () => console.log("🚀 Server running on port 5000"));
-
-// Get all usage records
-app.get("/api/usage", (req, res) => {
-  const query = "SELECT * FROM studentusage ORDER BY usageDate DESC";
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error("❌ Database fetch error:", err);
-      return res.status(500).json({ error: "Database fetch failed" });
-    }
-    res.json(results);
-  });
-});
-
-
-// POST API to record student meal usage
-app.post("/api/usage", (req, res) => {
-  const { studentId, mealType, items } = req.body;
-  const totalCost = items.reduce((sum, item) => sum + item.price, 0);
-
-  console.log("📩 Received request from frontend:", req.body);
-
-  const sql = "INSERT INTO studentusage (student_id, mealType, items, totalCost) VALUES (?, ?, ?, ?)";
-  
-  db.query(sql, [studentId, mealType, JSON.stringify(items), totalCost], (err, result) => {
-    if (err) {
-      console.error("❌ Database error:", err.message);
-      res.status(500).json({ error: err.message });
-    } else {
-      console.log("✅ Record inserted successfully!");
-      res.json({ message: "Usage recorded successfully!" });
-    }
-  });
-});
-
-
-
