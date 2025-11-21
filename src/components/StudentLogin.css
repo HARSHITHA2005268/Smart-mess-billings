@@ -1,0 +1,37 @@
+.student-login-container {
+  width: 400px;
+  margin: 80px auto;
+  padding: 25px;
+  border-radius: 10px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.student-login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.student-login-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.student-login-container button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.student-login-container button:hover {
+  background: #0056b3;
+}
