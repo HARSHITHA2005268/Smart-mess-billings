@@ -2,7 +2,7 @@
 .ms-container {
   padding: 22px;
   min-height: 100vh;
-  background: linear-gradient(180deg, #f1f6ff 0%, #fff 100%);
+  background: linear-gradient(180deg, #f2f4f8 0%, #fff 100%);
   font-family: "Poppins", sans-serif;
 }
 
@@ -17,7 +17,7 @@
 
 /* card */
 .ms-card {
-  background: white;
+  background: rgb(15, 121, 121);
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 8px 20px rgba(13, 45, 78, 0.06);
@@ -32,10 +32,10 @@
 .ms-table th, .ms-table td {
   padding: 12px 14px;
   text-align: left;
-  border-bottom: 1px solid #eef2ff;
+  border-bottom: 1px solid #f0f3fc;
 }
 .ms-table thead th {
-  color: #234a8f;
+  color: #ec98e8;
   font-weight: 600;
 }
 
@@ -56,7 +56,7 @@
   font-weight: 600;
 }
 .ms-btn.primary { background: #0f62ff; color: white; }
-.ms-btn.edit { background: #06b6d4; color: white; }
+.ms-btn.edit { background: #580a63; color: white; }
 .ms-btn.delete { background: #ef4444; color: white; }
 .ms-btn.cancel { background: #94a3b8; color: white; }
 
@@ -72,7 +72,7 @@
 }
 .ms-modal-card {
   width: 420px;
-  background: white;
+  background: rgb(243, 239, 239);
   padding: 18px;
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(2,6,23,0.2);

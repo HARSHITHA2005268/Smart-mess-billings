@@ -17,7 +17,7 @@ export default function ManageStudents() {
   // Fetch students from backend
   const fetchStudents = async () => {
     try {
-      const res = await axios.get("/api/students"); // adjust if needed
+  const res = await axios.get("http://localhost:5000/api/students"); // adjust if needed
       setStudents(res.data);
     } catch (err) {
       console.error("Error fetching students:", err);
@@ -44,7 +44,7 @@ export default function ManageStudents() {
       return alert("Name, Roll No, and Password are required");
 
     try {
-      await axios.post("/api/students", form);
+      await axios.post("http://localhost:5000/api/students", form);
       fetchStudents(); // refresh list
       setShowAdd(false);
     } catch (err) {
@@ -58,11 +58,11 @@ export default function ManageStudents() {
     if (!form.name || !form.roll_no) return alert("Name and Roll No are required");
 
     try {
-      await axios.put(`/api/students/${form.student_id}`, {
-        name: form.name,
-        roll_no: form.roll_no,
-        room_no: form.room_no,
-      });
+      await axios.put(`http://localhost:5000/api/students/${form.student_id}`, {
+  name: form.name,
+  roll_no: form.roll_no,
+  room_no: form.room_no,
+});
       fetchStudents(); // refresh list
       setShowEdit(false);
     } catch (err) {
@@ -76,7 +76,7 @@ export default function ManageStudents() {
     if (!window.confirm("Delete this student?")) return;
 
     try {
-      await axios.delete(`/api/students/${id}`);
+      await axios.delete(`http://localhost:5000/api/students/${id}`);
       setStudents(students.filter((s) => s.student_id !== id));
     } catch (err) {
       console.error("Error deleting student:", err);

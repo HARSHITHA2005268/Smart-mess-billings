@@ -1,22 +1,28 @@
-/* Main container */
+/* ===== Global Container ===== */
 .dashboard-container {
   display: flex;
   height: 100vh;
-  background: #e7eef1;   /* Light blue background instead of black */
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
 .sidebar {
-  width: 220px;
-  background-color: #0066ff; /* match landing navbar blue */
+  width: 250px;
+  background: linear-gradient(180deg, #15315a, #0d2240);
   color: #ffffff;
-  padding: 20px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .sidebar h2 {
   font-size: 22px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
 }
 
 .sidebar ul {
@@ -25,29 +31,84 @@
 }
 
 .sidebar ul li {
-  margin: 15px 0;
+  margin: 18px 0;
 }
 
 .sidebar ul li a {
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
   font-size: 16px;
-  padding: 8px 12px;
+  padding: 10px 14px;
   display: block;
-  border-radius: 5px;
-  transition: 0.18s ease;
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
-  background-color: rgba(255,255,255,0.08);
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateX(6px);
 }
 
-/* Content Area */
+/* ===== Content Area with Real Mess/Food Background ===== */
 .content-area {
   flex: 1;
-  background: #f0f4ff; /* match landing page light background */
-  padding: 30px;
+  padding: 0;
   overflow-y: auto;
-  border-left: 3px solid #0066ff;
+  background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1350&q=80')
+      no-repeat center center/cover;
+  position: relative;
+}
+
+/* ===== Top Header (Transparent - Home on Right) ===== */
+.top-header {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.4); /* Light transparent glass */
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Home Button (Right Top) */
+.home-btn {
+  padding: 8px 22px;
+  background: linear-gradient(to right, #0066ff, #15315a);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.home-btn:hover {
+  background: linear-gradient(to right, #15315a, #0066ff);
+  transform: scale(1.05);
+}
+
+/* ===== Content Box (Glass Style) ===== */
+.page-content {
+  margin: 30px;
+  padding: 30px;
+  background: rgba(196, 6, 85, 0.78);
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
 }

@@ -62,7 +62,7 @@
 .menu-form {
   width: 100%;
   max-width: 1100px;
-  background: white;
+  background: rgb(212, 26, 26);
   border-radius: 12px;
   box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
   padding: 22px;
@@ -84,9 +84,9 @@
   cursor: pointer;
 }
 .tabs button.active {
-  background: #eff6ff;
+  background: #13468a;
   border-color: #bfdbfe;
-  color: #1e3a8a;
+  color: #102664;
 }
 
 .loader, .empty { padding: 40px; text-align: center; color: #64748b; }

@@ -8,8 +8,23 @@ export default function AdminLogin() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // TEMPORARY LOGIN — later replace with MySQL check
-    navigate("/admin-dashboard");
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+
+    fetch("http://localhost:5000/api/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          navigate("/admin-dashboard");
+        } else {
+          alert("Invalid admin credentials");
+        }
+      })
+      .catch(() => alert("Server error"));
   };
 
   return (
@@ -20,13 +35,13 @@ export default function AdminLogin() {
         <h2>Admin Login</h2>
 
         <form onSubmit={handleLogin}>
-          <label>Staff ID</label>
-          <input type="text" placeholder="Enter Staff ID" />
+          <label>Username</label>
+          <input type="text" name="username" placeholder="Enter username" required />
 
           <label>Password</label>
-          <input type="password" placeholder="Enter Password" />
+          <input type="password" name="password" placeholder="Enter Password" required />
 
-          <button className="login-btn">Login</button>
+          <button type="submit" className="login-btn">Login</button>
         </form>
       </div>
     </div>

@@ -1,10 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./UserDashboard.css";
 
 export default function UserDashboard() {
+  const navigate = useNavigate();
+
   return (
     <div className="dashboard-container">
-
       <div className="sidebar">
         <h2>Dashboard</h2>
         <ul>
@@ -15,9 +16,15 @@ export default function UserDashboard() {
       </div>
 
       <div className="content-area">
-        <Outlet />
-      </div>
+        {/* 🔹 Transparent header, Home on right */}
+        <div className="top-header">
+          <button className="home-btn" onClick={() => navigate("/")}>🏠 Home</button>
+        </div>
 
+        <div className="page-content">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 }
